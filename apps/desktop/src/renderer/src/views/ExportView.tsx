@@ -80,7 +80,7 @@ export default function ExportView() {
       </div>
       <div className="export-watermark">
         <img className="export-watermark__logo" src={logoMarkUrl} alt="" />
-        PinSlip
+        xnote
       </div>
     </div>
   );

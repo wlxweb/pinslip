@@ -113,7 +113,7 @@ export function registerIpcHandlers({ windowManager, goProcess }: IpcContext): v
       // 系统对话框的确认按钮，硬编码中文会让外文系统用户看到「确定/选择此文件夹」
       title: tMain('dialog.chooseVaultTitle'),
       buttonLabel: tMain('dialog.chooseVaultButton'),
-      defaultPath: getVaultPath() ?? path.join(app.getPath('documents'), 'PinSlip'),
+      defaultPath: getVaultPath() ?? path.join(app.getPath('documents'), 'xnote'),
       properties: ['openDirectory', 'createDirectory'],
     });
     if (res.canceled || res.filePaths.length === 0) return null;

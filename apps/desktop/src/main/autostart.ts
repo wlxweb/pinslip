@@ -21,7 +21,7 @@ function linuxDesktopEntry(): string {
   return [
     '[Desktop Entry]',
     'Type=Application',
-    'Name=PinSlip',
+    'Name=xnote',
     `Exec=${app.getPath('exe')}`,
     'X-GNOME-Autostart-enabled=true',
     'Comment=贴在桌面上的 Markdown 便利贴',

@@ -1,9 +1,9 @@
 # electron-builder 配置：产出 Windows NSIS 安装包 / macOS DMG / Linux AppImage+deb
 # Go 二进制通过 extraResources 随包携带（先跑 pnpm build:service）
 
-appId: app.pinslip
-productName: PinSlip
-copyright: Copyright © 2026 PinSlip
+appId: app.xnote
+productName: xnote
+copyright: Copyright © 2026 xnote
 
 # 自动更新元信息：构建时把 latest.yml / latest-mac.yml 发布到 GitHub Releases，
 # 运行期 electron-updater 按此地址检查更新（公开仓库，无需 token）
@@ -63,14 +63,10 @@ linux:
         - x64
   icon: resources/icon.png               # 1024px，deb 安装时自动派生各尺寸图标
   category: Utility
-  # KDE/任务栏关联：electron-builder 默认 StartupWMClass 取 productName(PinSlip),
-  # 但运行期 WM_CLASS 取 app.getName()——打包后 package.json 无 productName 时
-  # 回落 name 字段(@pinslip/desktop),默认值匹配不上导致 KDE 关联失败。
-  # 配套的 package.json desktopName 字段(@pinslipdesktop.desktop)是 deb 装出的
-  # .desktop 文件名(electron-builder 对 name sanitize 的结果),改包名或配
-  # executableName 时两处要同步
+  # 运行期 WM_CLASS 取 app.getName()。package.json 的 productName 为 xnote，
+  # 与这里的 StartupWMClass、desktopName 保持一致。
   desktop:
-    StartupWMClass: '@pinslip/desktop'
+    StartupWMClass: xnote
   artifactName: ${productName}-${version}-${arch}.${ext}
 
 # deb 元信息；depends 用 electron-builder 默认依赖列表（已覆盖 libgtk-3-0/libnss3 等运行库）
@@ -85,5 +81,5 @@ nsis:
   perMachine: false                      # 按用户安装，免管理员权限
   allowToChangeInstallationDirectory: true
   displayLanguageSelector: true          # 安装开始时显示语言选择框（默认已随系统区域自动切换并内置简/繁中文等 ~40 种语言）
-  shortcutName: PinSlip
+  shortcutName: xnote
   artifactName: ${productName}-Setup-${version}.${ext}

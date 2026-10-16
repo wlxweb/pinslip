@@ -53,13 +53,10 @@ function doCheck(silent: boolean): void {
   });
 }
 
-/** 手动检查更新（设置页按钮）。dev 环境没有更新元信息，返回提示性错误态而非静默 */
+/** 手动检查更新（设置页按钮）。dev 环境没有更新元信息，返回提示性错误态而非静默。
+ *  本机安装的 xnote 不跟随上游 PinSlip 发布，避免检查更新时把应用覆盖回去。 */
 export function checkForUpdate(): void {
-  if (!app.isPackaged) {
-    setState({ status: 'error', message: tMain('update.devUnsupported') });
-    return;
-  }
-  doCheck(false);
+  setState({ status: 'error', message: tMain('update.localOnly') });
 }
 
 /** 退出并安装。仅 downloaded 态有意义；autoInstallOnAppQuit 默认 true，直接退出 */
@@ -74,39 +71,5 @@ export function getUpdateState(): UpdateState {
 
 /** 装配：注册事件监听 + 启动后静默检查一次（延迟 15s，避开启动竞速与首屏加载） */
 export function initAutoUpdater(): void {
-  if (!app.isPackaged || initialized) return;
-  initialized = true;
-
-  autoUpdater.autoDownload = true;
-  autoUpdater.autoInstallOnAppQuit = true;
-  // 中文错误信息兜底由渲染层展示 message；这里只透传
-  autoUpdater.on('update-available', (info) => {
-    setState({ status: 'available', version: info.version });
-  });
-  autoUpdater.on('update-not-available', (info) => {
-    setState({ status: 'latest', version: info.version });
-  });
-  autoUpdater.on('download-progress', (p) => {
-    setState({ status: 'downloading', percent: Math.round(p.percent) });
-  });
-  autoUpdater.on('update-downloaded', (info) => {
-    setState({ status: 'downloaded', version: info.version });
-  });
-  autoUpdater.on('error', (err) => {
-    // 镜像回退：主源失败且配置了镜像时切过去重试一次（对静默/手动检查一视同仁）
-    if (MIRROR_FEED && !triedMirror) {
-      triedMirror = true;
-      autoUpdater.setFeedURL(MIRROR_FEED);
-      autoUpdater.checkForUpdates().catch(() => {
-        /* 再失败会重新进入本事件，triedMirror 已置位，落到 error 态 */
-      });
-      return;
-    }
-    if (silentCheck) return; // 启动静默检查失败不打扰，用户可手动重试
-    setState({ status: 'error', message: err.message || tMain('update.genericError') });
-  });
-
-  setTimeout(() => {
-    doCheck(true);
-  }, 15_000);
+  // 本机 xnote 不从上游 PinSlip 的 GitHub / 镜像拉安装包，避免更新把应用覆盖回去。
 }

@@ -26,7 +26,7 @@ export function createMainWindow(): BrowserWindow {
     minHeight: MAIN_MIN_HEIGHT,
     x: workArea.x + workArea.width - MAIN_WIDTH - 12, // 离屏幕工作区边缘留 12px
     y: workArea.y + workArea.height - MAIN_HEIGHT - 12,
-    title: 'PinSlip',
+    title: 'xnote',
     resizable: true,
     maximizable: false,
     show: false,
