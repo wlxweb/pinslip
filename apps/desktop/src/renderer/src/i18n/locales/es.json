@@ -2,7 +2,7 @@
   "setup": {
     "text": "Elige una carpeta para guardar tus notas. Todas se guardan aquí como archivos Markdown, listas para abrir con cualquier otra herramienta.",
     "button": "Elegir carpeta",
-    "hint": "Sugerencia: Documentos\\PinSlip (puedes cambiarlo cuando quieras)"
+    "hint": "Sugerencia: Documentos\\xnote (puedes cambiarlo cuando quieras)"
   },
   "header": {
     "create": "Nueva nota",
@@ -170,7 +170,7 @@
     "close": "Cerrar ajustes",
     "general": "General",
     "autoStart": "Inicio automático",
-    "autoStartTip": "Iniciar PinSlip al arrancar el sistema",
+    "autoStartTip": "Iniciar xnote al arrancar el sistema",
     "autoStartPackagedOnly": "Disponible en la versión instalada",
     "autoStartDevHint": "No se puede cambiar en modo desarrollo; se aplica en la versión instalada",
     "language": "Idioma",
@@ -208,7 +208,7 @@
     "advancedExpand": "Expandir personalización avanzada",
     "advancedCollapse": "Contraer personalización avanzada",
     "trayIcon": "Icono de bandeja",
-    "trayIconTip": "Mostrar el icono de PinSlip en la bandeja del sistema",
+    "trayIconTip": "Mostrar el icono de xnote en la bandeja del sistema",
     "trayIconHint": "Con el icono de bandeja desactivado, cerrar todas las ventanas cierra la aplicación",
     "taskbarIcon": "Icono de barra de tareas",
     "taskbarIconTip": "Mostrar los iconos de ventana en la barra de tareas",
@@ -223,12 +223,15 @@
     "managerThemeSystem": "Sistema",
     "managerThemeHint": "Solo se aplica a la ventana principal y al panel de ajustes; las ventanas de notas y los colores no se ven afectados",
     "blankNoteShortcut": "Atajo para nota en blanco",
-    "blankNoteShortcutHint": "Pulsa para crear una nota en blanco en la carpeta raíz y enfocarla; la posición sigue la opción de posición de notas nuevas",
+    "blankNoteShortcutHint": "Haz clic en la tecla y pulsa una combinación. Crea una nota en blanco en la carpeta raíz y la enfoca; la posición sigue la opción de notas nuevas",
     "blankNoteShortcutRegisterFailed": "No se pudo registrar el atajo: puede estar en uso por otra aplicación o por el otro atajo. Se restauró el ajuste anterior",
     "quickCaptureShortcut": "Atajo para nota rápida",
-    "quickCaptureShortcutHint": "Pulsa para abrir la nota rápida; si entra en conflicto con otra aplicación (p. ej. Nueva carpeta del Explorador), elige otra tecla o desactívalo",
+    "quickCaptureShortcutHint": "Haz clic en la tecla y pulsa una combinación con ⌘, Ctrl o Alt. Cámbiala o desactívala si entra en conflicto. Esc cancela; Supr solo la desactiva",
     "quickCaptureShortcutRegisterFailed": "No se pudo registrar el atajo: puede estar en uso por otra aplicación o por el otro atajo. Se restauró el ajuste anterior",
     "shortcutOff": "Desactivado",
+    "shortcutUnset": "Sin definir",
+    "shortcutRecording": "Pulsa un atajo…",
+    "shortcutClear": "Desactivar este atajo",
     "shortcutCtrlShiftN": "Ctrl+Mayús+N",
     "shortcutCtrlAltQ": "Ctrl+Alt+Q",
     "shortcutCtrlShiftQ": "Ctrl+Mayús+Q",
@@ -254,6 +257,7 @@
     "hintLatest": "Ya tienes la última versión",
     "hintError": "Error al buscar: {{message}}. Puedes descargar el instalador manualmente",
     "devUnsupported": "La búsqueda de actualizaciones no está disponible en modo desarrollo",
+    "localOnly": "Esta es una instalación local de xnote y no se actualiza desde internet",
     "genericError": "Error de actualización"
   },
   "sync": {
@@ -336,13 +340,13 @@
     "quick": "Nota rápida",
     "quickWithKey": "Nota rápida ({{key}})",
     "openMain": "Abrir ventana principal",
-    "quit": "Salir de PinSlip"
+    "quit": "Salir de xnote"
   },
   "serverError": {
     "SYNC_URL_REQUIRED": "Se requiere la URL del repositorio para activar la sincronización",
-    "SYNC_LOCAL_NOT_PINSLIP_REPO": "Esta carpeta ya es un repositorio git pero no un repositorio de sincronización de PinSlip. Gestiona .git manualmente antes de configurar la sincronización",
+    "SYNC_LOCAL_NOT_PINSLIP_REPO": "Esta carpeta ya es un repositorio git pero no un repositorio de sincronización de xnote. Gestiona .git manualmente antes de configurar la sincronización",
     "SYNC_LOCAL_PERMISSION": "Sin permiso para leer o escribir la carpeta de sincronización. Comprueba los permisos de la carpeta o ejecútala con los privilegios adecuados",
-    "SYNC_REMOTE_NOT_PINSLIP_REPO": "El repositorio remoto no es un repositorio de sincronización de PinSlip (falta el marcador .pinslip-repo). Si confirmas que quieres reutilizarlo, confirma y sube el archivo marcador .pinslip-repo desde una máquina que posea ese repositorio y vuelve a intentarlo; si no, usa un repositorio vacío",
+    "SYNC_REMOTE_NOT_PINSLIP_REPO": "El repositorio remoto no es un repositorio de sincronización de xnote (falta el marcador .pinslip-repo). Si confirmas que quieres reutilizarlo, confirma y sube el archivo marcador .pinslip-repo desde una máquina que posea ese repositorio y vuelve a intentarlo; si no, usa un repositorio vacío",
     "SYNC_REMOTE_ACCESS": "No se puede acceder al repositorio remoto. Comprueba la URL, el usuario y el token",
     "SYNC_BRANCH_NOT_FOUND": "La rama no existe en el remoto. Comprueba el nombre de la rama o usa un repositorio vacío",
     "SYNC_UNRELATED_HISTORIES": "Los historiales local y remoto no tienen un ancestro común y no se pueden fusionar automáticamente",

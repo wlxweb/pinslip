@@ -2,7 +2,7 @@
   "setup": {
     "text": "Choose a folder to store your notes. All notes are saved here as Markdown files, ready to open with any other tool.",
     "button": "Choose folder",
-    "hint": "Suggested: Documents\\PinSlip (you can change this anytime)"
+    "hint": "Suggested: Documents\\xnote (you can change this anytime)"
   },
   "header": {
     "create": "New note",
@@ -170,7 +170,7 @@
     "close": "Close settings",
     "general": "General",
     "autoStart": "Launch at login",
-    "autoStartTip": "Start PinSlip automatically at login",
+    "autoStartTip": "Start xnote automatically at login",
     "autoStartPackagedOnly": "Available in the installed app",
     "autoStartDevHint": "Not changeable in dev mode; applies to the installed app",
     "language": "Language",
@@ -208,7 +208,7 @@
     "advancedExpand": "Expand advanced options",
     "advancedCollapse": "Collapse advanced options",
     "trayIcon": "Tray icon",
-    "trayIconTip": "Show the PinSlip icon in the system tray",
+    "trayIconTip": "Show the xnote icon in the system tray",
     "trayIconHint": "With the tray icon off, closing all windows quits the app",
     "taskbarIcon": "Taskbar icon",
     "taskbarIconTip": "Show window icons in the taskbar",
@@ -223,12 +223,15 @@
     "managerThemeSystem": "System",
     "managerThemeHint": "Applies only to the main window and settings drawer; note windows and note colors are unaffected",
     "blankNoteShortcut": "Blank note shortcut",
-    "blankNoteShortcutHint": "Press to create a blank note in the root folder and focus it; placement follows the new note placement option",
+    "blankNoteShortcutHint": "Click the key, then press a combination. It creates a blank note in the root folder and focuses it; placement follows the new note placement option",
     "blankNoteShortcutRegisterFailed": "Failed to register the shortcut: it may be used by another app or the other shortcut. Previous setting restored",
     "quickCaptureShortcut": "Quick note shortcut",
-    "quickCaptureShortcutHint": "Press to open the quick note window; if it conflicts with another app (e.g. Explorer's New Folder), pick another key or turn it off",
+    "quickCaptureShortcutHint": "Click the key, then press a combination that includes ⌘, Ctrl, or Alt. Change or turn it off if it conflicts with another app. Esc cancels; Delete alone turns it off",
     "quickCaptureShortcutRegisterFailed": "Failed to register the shortcut: it may be used by another app or the other shortcut. Previous setting restored",
     "shortcutOff": "Off",
+    "shortcutUnset": "Not set",
+    "shortcutRecording": "Press a shortcut…",
+    "shortcutClear": "Turn this shortcut off",
     "shortcutCtrlShiftN": "Ctrl+Shift+N",
     "shortcutCtrlAltQ": "Ctrl+Alt+Q",
     "shortcutCtrlShiftQ": "Ctrl+Shift+Q",
@@ -254,6 +257,7 @@
     "hintLatest": "You're on the latest version",
     "hintError": "Check failed: {{message}}. You can download the installer manually",
     "devUnsupported": "Update checks are not supported in dev mode",
+    "localOnly": "This is a locally installed xnote and does not update from the internet",
     "genericError": "Update error"
   },
   "sync": {
@@ -336,13 +340,13 @@
     "quick": "Quick note",
     "quickWithKey": "Quick note ({{key}})",
     "openMain": "Open main window",
-    "quit": "Quit PinSlip"
+    "quit": "Quit xnote"
   },
   "serverError": {
     "SYNC_URL_REQUIRED": "A repository URL is required to enable sync",
-    "SYNC_LOCAL_NOT_PINSLIP_REPO": "This folder is already a git repository but not a PinSlip sync repository. Please handle .git manually before configuring sync",
+    "SYNC_LOCAL_NOT_PINSLIP_REPO": "This folder is already a git repository but not a xnote sync repository. Please handle .git manually before configuring sync",
     "SYNC_LOCAL_PERMISSION": "No permission to read or write the sync folder. Check the folder permissions or run with appropriate privileges",
-    "SYNC_REMOTE_NOT_PINSLIP_REPO": "The remote repository is not a PinSlip sync repository (missing the .pinslip-repo marker). If you intend to reuse it, commit and push the .pinslip-repo marker file from a machine that owns the repository, then retry; otherwise use an empty repository",
+    "SYNC_REMOTE_NOT_PINSLIP_REPO": "The remote repository is not a xnote sync repository (missing the .pinslip-repo marker). If you intend to reuse it, commit and push the .pinslip-repo marker file from a machine that owns the repository, then retry; otherwise use an empty repository",
     "SYNC_REMOTE_ACCESS": "Cannot access the remote repository. Check the URL, username, and token",
     "SYNC_BRANCH_NOT_FOUND": "The branch does not exist on the remote. Check the branch name or use an empty repository",
     "SYNC_UNRELATED_HISTORIES": "Local and remote histories share no common ancestor and cannot be merged automatically",

@@ -46,14 +46,14 @@ import DotsSixVerticalIcon from '~icons/ph/dots-six-vertical';
 import SlidersHorizontalIcon from '~icons/ph/sliders-horizontal';
 import ArrowCounterClockwiseIcon from '~icons/ph/arrow-counter-clockwise';
 import type {
-  GlobalShortcutKey,
   NoteMeta,
   SaveSyncConfigInput,
   SearchHit,
   SyncStatus,
   UpdateState,
 } from '@shared/types';
-import { GLOBAL_SHORTCUT_KEYS, GLOBAL_SHORTCUT_LABEL_KEYS } from '@shared/shortcuts';
+import { shortcutsConflict } from '@shared/shortcuts';
+import ShortcutRecorder from '../components/ShortcutRecorder';
 import { foldersApi, notesApi, settingsApi, trashApi } from '../api/notes';
 import type { TrashStats } from '../api/notes';
 import { syncApi } from '../api/sync';
@@ -197,11 +197,15 @@ export default function MainView() {
   /** 生效主题：偏好 'system' 时按 OS 深色事实合成，手动档即偏好本身 */
   const effectiveTheme: 'light' | 'dark' =
     managerTheme === 'system' ? (osDark ? 'dark' : 'light') : managerTheme;
-  /** 空白便签全局快捷键（缺省 off 不注册）+ 注册失败提示态（新键被他应用占用时回滚选项） */
-  const [blankNoteShortcut, setBlankNoteShortcut] = useState<GlobalShortcutKey>('off');
+  /** 运行平台：快捷键展示（macOS 用 ⌘）与两项快捷键冲突判断 */
+  const [platform, setPlatform] = useState(() =>
+    /Mac/i.test(navigator.platform) ? 'darwin' : 'win32',
+  );
+  /** 空白便签全局快捷键（缺省 off 不注册）+ 注册失败提示态（新键被他应用占用时回滚） */
+  const [blankNoteShortcut, setBlankNoteShortcut] = useState('off');
   const [blankNoteShortcutError, setBlankNoteShortcutError] = useState(false);
-  /** 速记全局快捷键（缺省 ctrl+shift+n 保持现状）+ 注册失败提示态（同空白便签模式） */
-  const [quickCaptureShortcut, setQuickCaptureShortcut] = useState<GlobalShortcutKey>('ctrl+shift+n');
+  /** 速记全局快捷键（缺省 ctrl+shift+n）+ 注册失败提示态 */
+  const [quickCaptureShortcut, setQuickCaptureShortcut] = useState('ctrl+shift+n');
   const [quickCaptureShortcutError, setQuickCaptureShortcutError] = useState(false);
   /** 工具栏按钮自定义顺序（高级设置拖拽排序；缺省 = 现状顺序）。
    *  ref 与 state 同源：拖拽松手结算时读现值，避开闭包旧值 */
@@ -469,6 +473,7 @@ export default function MainView() {
         setIsPackaged(info.isPackaged);
         setVersion(info.version);
         setGoPort(info.goPort);
+        setPlatform(info.platform);
         if (info.vaultPath) {
           setVaultPath(info.vaultPath);
           setStage('ready');
@@ -753,7 +758,11 @@ export default function MainView() {
   // 空白便签快捷键（高级设置）：乐观切换；注册失败（新键被他应用占用）时
   // main 抛错——回滚选项并提示（设置未持久化、旧绑定保持有效）
   const changeBlankNoteShortcut = useCallback(
-    (next: GlobalShortcutKey) => {
+    (next: string) => {
+      if (shortcutsConflict(next, quickCaptureShortcut, platform)) {
+        setBlankNoteShortcutError(true);
+        return;
+      }
       const prev = blankNoteShortcut;
       setBlankNoteShortcut(next);
       setBlankNoteShortcutError(false);
@@ -762,12 +771,16 @@ export default function MainView() {
         setBlankNoteShortcutError(true);
       });
     },
-    [blankNoteShortcut],
+    [blankNoteShortcut, platform, quickCaptureShortcut],
   );
 
-  // 速记快捷键（高级设置）：同空白便签的乐观切换 + 失败回滚提示模式
+  // 速记快捷键：录制后原子重绑；与空白便签撞键或被其他应用占用时不改已保存的键
   const changeQuickCaptureShortcut = useCallback(
-    (next: GlobalShortcutKey) => {
+    (next: string) => {
+      if (shortcutsConflict(next, blankNoteShortcut, platform)) {
+        setQuickCaptureShortcutError(true);
+        return;
+      }
       const prev = quickCaptureShortcut;
       setQuickCaptureShortcut(next);
       setQuickCaptureShortcutError(false);
@@ -776,7 +789,7 @@ export default function MainView() {
         setQuickCaptureShortcutError(true);
       });
     },
-    [quickCaptureShortcut],
+    [blankNoteShortcut, platform, quickCaptureShortcut],
   );
 
   // 界面语言切换：乐观更新，立即生效（i18n.changeLanguage）并持久化到主进程设置
@@ -1271,7 +1284,7 @@ export default function MainView() {
   if (stage === 'setup') {
     return (
       <div className="main-view vault-setup" data-theme={effectiveTheme}>
-        <h1 className="vault-setup__title">PinSlip</h1>
+        <h1 className="vault-setup__title">xnote</h1>
         <FolderIcon className="vault-setup__icon" />
         <p className="vault-setup__text">{t('setup.text')}</p>
         <button className="vault-setup__btn" onClick={chooseVault}>
@@ -1285,7 +1298,7 @@ export default function MainView() {
   return (
     <div className="main-view" data-theme={effectiveTheme}>
       <header className="main-view__header">
-        <h1>PinSlip</h1>
+        <h1>xnote</h1>
         <div className="main-view__actions">
           {/* 底色跟随上次用色（storage 事件/focus 同步），文字保持固定深棕
               （#5d4037 在六个浅色底上都清晰，绑色板 ink 会同色系低对比） */}
@@ -1399,22 +1412,14 @@ export default function MainView() {
                   <span className="settings-toggle__thumb" />
                 </button>
               </div>
-              {/* 速记全局快捷键：共用键位池，已被空白便签快捷键占用的键位禁用 */}
               <div className="settings-panel__row">
                 <KeyboardIcon className="settings-panel__row-icon" />
                 <span className="settings-panel__label">{t('settings.quickCaptureShortcut')}</span>
-                <select
-                  className="settings-panel__select"
+                <ShortcutRecorder
                   value={quickCaptureShortcut}
-                  onChange={(e) => changeQuickCaptureShortcut(e.target.value as GlobalShortcutKey)}
-                >
-                  {GLOBAL_SHORTCUT_KEYS.map((key) => (
-                    <option key={key} value={key} disabled={key === blankNoteShortcut}>
-                      {t(GLOBAL_SHORTCUT_LABEL_KEYS[key])}
-                    </option>
-                  ))}
-                  <option value="off">{t('settings.shortcutOff')}</option>
-                </select>
+                  platform={platform}
+                  onChange={changeQuickCaptureShortcut}
+                />
               </div>
               <div className="settings-panel__hint">{t('settings.quickCaptureShortcutHint')}</div>
               {quickCaptureShortcutError && (
@@ -1987,22 +1992,11 @@ export default function MainView() {
                 <div className="settings-panel__row">
                   <KeyboardIcon className="settings-panel__row-icon" />
                   <span className="settings-panel__label">{t('settings.blankNoteShortcut')}</span>
-                  <select
-                    className="settings-panel__select"
+                  <ShortcutRecorder
                     value={blankNoteShortcut}
-                    onChange={(e) => changeBlankNoteShortcut(e.target.value as GlobalShortcutKey)}
-                  >
-                    {GLOBAL_SHORTCUT_KEYS.map((key) => (
-                      <option
-                        key={key}
-                        value={key}
-                        disabled={key === quickCaptureShortcut}
-                      >
-                        {t(GLOBAL_SHORTCUT_LABEL_KEYS[key])}
-                      </option>
-                    ))}
-                    <option value="off">{t('settings.shortcutOff')}</option>
-                  </select>
+                    platform={platform}
+                    onChange={changeBlankNoteShortcut}
+                  />
                 </div>
                 <div className="settings-panel__hint">{t('settings.blankNoteShortcutHint')}</div>
                 {blankNoteShortcutError && (

@@ -2,7 +2,7 @@
   "setup": {
     "text": "选择一个文件夹作为便签的存储位置。所有便签都会以 Markdown 文件保存在这里，随时可用其他工具打开。",
     "button": "选择文件夹",
-    "hint": "推荐：文档\\PinSlip（之后可随时更改）"
+    "hint": "推荐：文档\\xnote（之后可随时更改）"
   },
   "header": {
     "create": "新建便签",
@@ -170,7 +170,7 @@
     "close": "关闭设置",
     "general": "通用",
     "autoStart": "开机自启",
-    "autoStartTip": "开机时自动启动 PinSlip",
+    "autoStartTip": "开机时自动启动 xnote",
     "autoStartPackagedOnly": "安装版中可用",
     "autoStartDevHint": "开发模式下不可改，安装版中生效",
     "language": "语言",
@@ -208,7 +208,7 @@
     "advancedExpand": "展开高级设置",
     "advancedCollapse": "收起高级设置",
     "trayIcon": "托盘图标",
-    "trayIconTip": "在系统托盘区显示 PinSlip 图标",
+    "trayIconTip": "在系统托盘区显示 xnote 图标",
     "trayIconHint": "关闭托盘后，关闭全部窗口将直接退出应用",
     "taskbarIcon": "任务栏图标",
     "taskbarIconTip": "在任务栏显示窗口图标",
@@ -223,12 +223,15 @@
     "managerThemeSystem": "跟随系统",
     "managerThemeHint": "只作用于主窗口与设置抽屉；便签窗口与便签颜色不受影响",
     "blankNoteShortcut": "空白便签快捷键",
-    "blankNoteShortcutHint": "按下即在根目录新建一张空白便签并聚焦；落点跟随「新便签落点」选项",
+    "blankNoteShortcutHint": "点击按键后按下组合。按下即在根目录新建一张空白便签并聚焦；落点跟随「新便签落点」",
     "blankNoteShortcutRegisterFailed": "快捷键注册失败：可能已被其他应用或另一项快捷键占用，已恢复原设置",
     "quickCaptureShortcut": "速记快捷键",
-    "quickCaptureShortcutHint": "按下呼出速记浮窗；与其他应用冲突时（如资源管理器新建文件夹）可换键或关闭",
+    "quickCaptureShortcutHint": "点击按键后按下新的组合（需包含 ⌘、Ctrl 或 Alt）。与其他应用冲突时改键或关闭。Esc 取消录制，单独按删除键则关闭",
     "quickCaptureShortcutRegisterFailed": "快捷键注册失败：可能已被其他应用或另一项快捷键占用，已恢复原设置",
     "shortcutOff": "关闭",
+    "shortcutUnset": "未设置",
+    "shortcutRecording": "请按下快捷键…",
+    "shortcutClear": "关闭此快捷键",
     "shortcutCtrlShiftN": "Ctrl+Shift+N",
     "shortcutCtrlAltQ": "Ctrl+Alt+Q",
     "shortcutCtrlShiftQ": "Ctrl+Shift+Q",
@@ -254,6 +257,7 @@
     "hintLatest": "已是最新版本",
     "hintError": "检查失败：{{message}}，可手动下载安装包",
     "devUnsupported": "开发模式不支持更新检查",
+    "localOnly": "这是本机安装的 xnote，不从网上更新",
     "genericError": "更新出错"
   },
   "sync": {
@@ -336,13 +340,13 @@
     "quick": "速记",
     "quickWithKey": "速记（{{key}}）",
     "openMain": "打开主窗口",
-    "quit": "退出 PinSlip"
+    "quit": "退出 xnote"
   },
   "serverError": {
     "SYNC_URL_REQUIRED": "启用同步必须提供仓库地址",
-    "SYNC_LOCAL_NOT_PINSLIP_REPO": "当前文件夹已是一个 git 仓库，但不是 PinSlip 同步仓库，请手动处理 .git 后再配置同步",
+    "SYNC_LOCAL_NOT_PINSLIP_REPO": "当前文件夹已是一个 git 仓库，但不是 xnote 同步仓库，请手动处理 .git 后再配置同步",
     "SYNC_LOCAL_PERMISSION": "没有权限读写同步文件夹，请检查文件夹权限或以合适身份运行",
-    "SYNC_REMOTE_NOT_PINSLIP_REPO": "远端仓库不是 PinSlip 的同步仓库（缺少 .pinslip-repo 标记）。若确认要沿用此仓库，请在拥有该仓库的机器上提交 .pinslip-repo 标记文件并推送后重试；否则请改用空仓库",
+    "SYNC_REMOTE_NOT_PINSLIP_REPO": "远端仓库不是 xnote 的同步仓库（缺少 .pinslip-repo 标记）。若确认要沿用此仓库，请在拥有该仓库的机器上提交 .pinslip-repo 标记文件并推送后重试；否则请改用空仓库",
     "SYNC_REMOTE_ACCESS": "无法访问远端仓库，请检查地址、用户名和 token",
     "SYNC_BRANCH_NOT_FOUND": "远端没有该分支，请确认分支名或改用空仓库",
     "SYNC_UNRELATED_HISTORIES": "本地与远端没有共同祖先，无法自动合并",

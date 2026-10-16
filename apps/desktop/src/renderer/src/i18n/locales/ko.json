@@ -2,7 +2,7 @@
   "setup": {
     "text": "메모를 저장할 폴더를 선택하세요. 모든 메모는 Markdown 파일로 이곳에 저장되며, 다른 도구에서도 열 수 있습니다.",
     "button": "폴더 선택",
-    "hint": "추천: 문서\\PinSlip (나중에 언제든 변경 가능)"
+    "hint": "추천: 문서\\xnote (나중에 언제든 변경 가능)"
   },
   "header": {
     "create": "새 메모",
@@ -170,7 +170,7 @@
     "close": "설정 닫기",
     "general": "일반",
     "autoStart": "시작 시 자동 실행",
-    "autoStartTip": "로그인할 때 PinSlip 자동 실행",
+    "autoStartTip": "로그인할 때 xnote 자동 실행",
     "autoStartPackagedOnly": "설치 버전에서 사용 가능",
     "autoStartDevHint": "개발 모드에서는 변경할 수 없으며 설치 버전에서 적용됩니다",
     "language": "언어",
@@ -208,7 +208,7 @@
     "advancedExpand": "고급 사용자 지정 펼치기",
     "advancedCollapse": "고급 사용자 지정 접기",
     "trayIcon": "트레이 아이콘",
-    "trayIconTip": "시스템 트레이에 PinSlip 아이콘 표시",
+    "trayIconTip": "시스템 트레이에 xnote 아이콘 표시",
     "trayIconHint": "트레이를 끄면 모든 창을 닫을 때 앱이 종료됩니다",
     "taskbarIcon": "작업 표시줄 아이콘",
     "taskbarIconTip": "작업 표시줄에 창 아이콘 표시",
@@ -223,12 +223,15 @@
     "managerThemeSystem": "시스템 설정 따르기",
     "managerThemeHint": "메인 창과 설정 서랍에만 적용되며, 메모 창과 메모 색상에는 영향을 주지 않습니다",
     "blankNoteShortcut": "빈 메모 단축키",
-    "blankNoteShortcutHint": "누르면 루트 폴더에 빈 메모를 만들고 포커스합니다. 위치는 '새 메모 위치' 설정을 따릅니다",
+    "blankNoteShortcutHint": "키를 클릭한 뒤 조합을 누르세요. 루트 폴더에 빈 메모를 만들고 포커스합니다. 위치는 '새 메모 위치' 설정을 따릅니다",
     "blankNoteShortcutRegisterFailed": "단축키 등록에 실패했습니다. 다른 앱 또는 다른 단축키가 사용 중일 수 있습니다. 이전 설정으로 복원했습니다",
     "quickCaptureShortcut": "빠른 메모 단축키",
-    "quickCaptureShortcutHint": "누르면 빠른 메모 창을 엽니다. 다른 앱과 충돌하면(예: 파일 탐색기의 새 폴더) 다른 키로 바꾸거나 끌 수 있습니다",
+    "quickCaptureShortcutHint": "키를 클릭한 뒤 ⌘, Ctrl 또는 Alt가 포함된 조합을 누르세요. 다른 앱과 충돌하면 바꾸거나 끄세요. Esc는 취소, Delete만 누르면 끄기",
     "quickCaptureShortcutRegisterFailed": "단축키 등록에 실패했습니다. 다른 앱 또는 다른 단축키가 사용 중일 수 있습니다. 이전 설정으로 복원했습니다",
     "shortcutOff": "끄기",
+    "shortcutUnset": "설정 안 함",
+    "shortcutRecording": "단축키를 누르세요…",
+    "shortcutClear": "이 단축키 끄기",
     "shortcutCtrlShiftN": "Ctrl+Shift+N",
     "shortcutCtrlAltQ": "Ctrl+Alt+Q",
     "shortcutCtrlShiftQ": "Ctrl+Shift+Q",
@@ -254,6 +257,7 @@
     "hintLatest": "최신 버전입니다",
     "hintError": "확인 실패: {{message}}. 수동으로 설치 파일을 다운로드할 수 있습니다",
     "devUnsupported": "개발 모드에서는 업데이트를 확인할 수 없습니다",
+    "localOnly": "이 버전은 로컬에 설치된 xnote이며 인터넷에서 업데이트하지 않습니다",
     "genericError": "업데이트 오류"
   },
   "sync": {
@@ -336,13 +340,13 @@
     "quick": "빠른 메모",
     "quickWithKey": "빠른 메모({{key}})",
     "openMain": "메인 창 열기",
-    "quit": "PinSlip 종료"
+    "quit": "xnote 종료"
   },
   "serverError": {
     "SYNC_URL_REQUIRED": "동기화를 사용하려면 저장소 주소가 필요합니다",
-    "SYNC_LOCAL_NOT_PINSLIP_REPO": "이 폴더는 이미 git 저장소이지만 PinSlip 동기화 저장소가 아닙니다. .git을 수동으로 처리한 후 동기화를 설정하세요",
+    "SYNC_LOCAL_NOT_PINSLIP_REPO": "이 폴더는 이미 git 저장소이지만 xnote 동기화 저장소가 아닙니다. .git을 수동으로 처리한 후 동기화를 설정하세요",
     "SYNC_LOCAL_PERMISSION": "동기화 폴더에 대한 읽기/쓰기 권한이 없습니다. 폴더 권한을 확인하거나 적절한 권한으로 실행하세요",
-    "SYNC_REMOTE_NOT_PINSLIP_REPO": "원격 저장소는 PinSlip 동기화 저장소가 아닙니다(.pinslip-repo 마커가 없음). 이 저장소를 계속 사용하려면 해당 저장소를 보유한 머신에서 .pinslip-repo 마커 파일을 커밋하고 푸시한 후 다시 시도하세요. 그렇지 않으면 빈 저장소를 사용하세요",
+    "SYNC_REMOTE_NOT_PINSLIP_REPO": "원격 저장소는 xnote 동기화 저장소가 아닙니다(.pinslip-repo 마커가 없음). 이 저장소를 계속 사용하려면 해당 저장소를 보유한 머신에서 .pinslip-repo 마커 파일을 커밋하고 푸시한 후 다시 시도하세요. 그렇지 않으면 빈 저장소를 사용하세요",
     "SYNC_REMOTE_ACCESS": "원격 저장소에 접근할 수 없습니다. 주소, 사용자 이름, 토큰을 확인하세요",
     "SYNC_BRANCH_NOT_FOUND": "원격에 해당 브랜치가 없습니다. 브랜치 이름을 확인하거나 빈 저장소를 사용하세요",
     "SYNC_UNRELATED_HISTORIES": "로컬과 원격에 공통 조상이 없어 자동으로 병합할 수 없습니다",

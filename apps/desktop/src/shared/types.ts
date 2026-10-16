@@ -154,17 +154,10 @@ export interface RuntimeInfo {
   version: string;
 }
 
-/** 全局快捷键预设键位池（速记/空白便签共用，'off' = 不注册）。
- *  main/渲染共用的单一来源：渲染层只能选这些值，main 侧注册前再校验；
- *  两功能选同一键时后注册者失败回滚（Electron 对同应用内重复注册亦返回失败） */
-export type GlobalShortcutKey =
-  | 'off'
-  | 'ctrl+shift+n'
-  | 'ctrl+alt+q'
-  | 'ctrl+shift+q'
-  | 'ctrl+alt+n'
-  | 'ctrl+shift+alt+n'
-  | 'ctrl+alt+insert';
+/** 全局快捷键设置值：'off' 不注册；历史预设 id（ctrl+shift+n 等）；
+ *  或用户录制的 Electron accelerator（CommandOrControl+Shift+K）。
+ *  解析与冲突判断见 shared/shortcuts。 */
+export type GlobalShortcutKey = string;
 
 /** 高级设置选项（应用设置 settings.json 的 advanced 对象，main/渲染共用）。
  *  全部字段可选且有缺省值（缺省 = 简洁模型现状），新增选项 = 加字段，零新增 IPC */
@@ -181,7 +174,8 @@ export interface AdvancedSettings {
   managerTheme?: 'light' | 'dark' | 'system';
   /** 空白便签全局快捷键（缺省 'off' 不注册）：按下在根目录新建空白便签并聚焦 */
   blankNoteShortcut?: GlobalShortcutKey;
-  /** 速记浮窗全局快捷键（缺省 'ctrl+shift+n' 保持现状）：按下呼出速记浮窗，'off' = 不注册 */
+  /** 速记浮窗全局快捷键（缺省 'ctrl+shift+n'）：按下呼出速记浮窗，'off' = 不注册。
+   *  设置页可录制任意带修饰键的组合，不再限于预设列表 */
   quickCaptureShortcut?: GlobalShortcutKey;
   /** 便签底部工具栏左区（编辑辅助区）按钮顺序：有序 id 列表，缺省 = 现状顺序。
    *  展示上限 8 个是展示约束（渲染层截取），不是存储约束；读写两侧都过

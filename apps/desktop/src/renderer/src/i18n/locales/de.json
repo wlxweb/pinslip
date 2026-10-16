@@ -2,7 +2,7 @@
   "setup": {
     "text": "Wähle einen Ordner als Speicherort für deine Notizen. Alle Notizen werden dort als Markdown-Dateien gespeichert und lassen sich mit jedem anderen Tool öffnen.",
     "button": "Ordner wählen",
-    "hint": "Empfehlung: Dokumente\\PinSlip (jederzeit änderbar)"
+    "hint": "Empfehlung: Dokumente\\xnote (jederzeit änderbar)"
   },
   "header": {
     "create": "Neue Notiz",
@@ -170,7 +170,7 @@
     "close": "Einstellungen schließen",
     "general": "Allgemein",
     "autoStart": "Autostart",
-    "autoStartTip": "PinSlip beim Anmelden automatisch starten",
+    "autoStartTip": "xnote beim Anmelden automatisch starten",
     "autoStartPackagedOnly": "In der installierten Version verfügbar",
     "autoStartDevHint": "Im Entwicklungsmodus nicht änderbar; gilt für die installierte Version",
     "language": "Sprache",
@@ -208,7 +208,7 @@
     "advancedExpand": "Erweiterte Anpassung aufklappen",
     "advancedCollapse": "Erweiterte Anpassung zuklappen",
     "trayIcon": "Tray-Symbol",
-    "trayIconTip": "PinSlip-Symbol im Infobereich anzeigen",
+    "trayIconTip": "xnote-Symbol im Infobereich anzeigen",
     "trayIconHint": "Ohne Tray-Symbol wird die App beendet, sobald alle Fenster geschlossen sind",
     "taskbarIcon": "Taskleisten-Symbol",
     "taskbarIconTip": "Fenstersymbole in der Taskleiste anzeigen",
@@ -223,12 +223,15 @@
     "managerThemeSystem": "System",
     "managerThemeHint": "Gilt nur für Hauptfenster und Einstellungsleiste; Notizfenster und Notizfarben bleiben unverändert",
     "blankNoteShortcut": "Tastenkürzel für leere Notiz",
-    "blankNoteShortcutHint": "Erstellt per Tastendruck eine leere Notiz im Stammordner und fokussiert sie; die Position folgt der Option für neue Notizen",
+    "blankNoteShortcutHint": "Auf die Taste klicken und eine Kombination drücken. Erstellt eine leere Notiz im Stammordner und fokussiert sie; die Position folgt der Option für neue Notizen",
     "blankNoteShortcutRegisterFailed": "Tastenkürzel konnte nicht registriert werden: möglicherweise von einer anderen App oder dem anderen Kürzel belegt. Vorherige Einstellung wiederhergestellt",
     "quickCaptureShortcut": "Tastenkürzel für Schnellnotiz",
-    "quickCaptureShortcutHint": "Öffnet per Tastendruck die Schnellnotiz; bei Konflikten mit anderen Apps (z. B. „Neuer Ordner“ im Explorer) eine andere Taste wählen oder deaktivieren",
+    "quickCaptureShortcutHint": "Auf die Taste klicken und eine Kombination mit ⌘, Ctrl oder Alt drücken. Bei Konflikten ändern oder deaktivieren. Esc bricht ab; Entf allein schaltet aus",
     "quickCaptureShortcutRegisterFailed": "Tastenkürzel konnte nicht registriert werden: möglicherweise von einer anderen App oder dem anderen Kürzel belegt. Vorherige Einstellung wiederhergestellt",
     "shortcutOff": "Aus",
+    "shortcutUnset": "Nicht festgelegt",
+    "shortcutRecording": "Tastenkürzel drücken…",
+    "shortcutClear": "Dieses Kürzel ausschalten",
     "shortcutCtrlShiftN": "Strg+Umschalt+N",
     "shortcutCtrlAltQ": "Strg+Alt+Q",
     "shortcutCtrlShiftQ": "Strg+Umschalt+Q",
@@ -254,6 +257,7 @@
     "hintLatest": "Du bist auf dem neuesten Stand",
     "hintError": "Prüfung fehlgeschlagen: {{message}}. Installer kann manuell geladen werden",
     "devUnsupported": "Update-Prüfung im Entwicklungsmodus nicht verfügbar",
+    "localOnly": "Dies ist ein lokal installiertes xnote und aktualisiert sich nicht aus dem Internet",
     "genericError": "Update-Fehler"
   },
   "sync": {
@@ -336,13 +340,13 @@
     "quick": "Schnellnotiz",
     "quickWithKey": "Schnellnotiz ({{key}})",
     "openMain": "Hauptfenster öffnen",
-    "quit": "PinSlip beenden"
+    "quit": "xnote beenden"
   },
   "serverError": {
     "SYNC_URL_REQUIRED": "Zum Aktivieren der Synchronisierung ist eine Repository-URL erforderlich",
-    "SYNC_LOCAL_NOT_PINSLIP_REPO": "Dieser Ordner ist bereits ein Git-Repository, aber kein PinSlip-Sync-Repository. Bitte .git manuell behandeln, bevor die Synchronisierung konfiguriert wird",
+    "SYNC_LOCAL_NOT_PINSLIP_REPO": "Dieser Ordner ist bereits ein Git-Repository, aber kein xnote-Sync-Repository. Bitte .git manuell behandeln, bevor die Synchronisierung konfiguriert wird",
     "SYNC_LOCAL_PERMISSION": "Keine Lese-/Schreibberechtigung für den Synchronisierungsordner. Bitte Ordnerberechtigungen prüfen oder mit geeigneten Rechten ausführen",
-    "SYNC_REMOTE_NOT_PINSLIP_REPO": "Das Remote-Repository ist kein PinSlip-Sync-Repository (die Markierung .pinslip-repo fehlt). Wenn du dieses Repository weiterverwenden möchtest, committe und pushe die Markierungsdatei .pinslip-repo auf einem Rechner, der das Repository besitzt, und versuche es erneut; verwende sonst ein leeres Repository",
+    "SYNC_REMOTE_NOT_PINSLIP_REPO": "Das Remote-Repository ist kein xnote-Sync-Repository (die Markierung .pinslip-repo fehlt). Wenn du dieses Repository weiterverwenden möchtest, committe und pushe die Markierungsdatei .pinslip-repo auf einem Rechner, der das Repository besitzt, und versuche es erneut; verwende sonst ein leeres Repository",
     "SYNC_REMOTE_ACCESS": "Kein Zugriff auf das Remote-Repository. Bitte URL, Benutzername und Token prüfen",
     "SYNC_BRANCH_NOT_FOUND": "Der Branch existiert nicht im Remote. Bitte Branch-Namen prüfen oder ein leeres Repository verwenden",
     "SYNC_UNRELATED_HISTORIES": "Lokale und entfernte Historie haben keinen gemeinsamen Vorfahren und können nicht automatisch gemergt werden",

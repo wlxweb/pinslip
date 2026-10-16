@@ -3,8 +3,7 @@ import { existsSync } from 'node:fs';
 import { app, Menu, nativeImage, Tray } from 'electron';
 import { tMain } from './i18n';
 import { getAdvanced } from './settings';
-import type { GlobalShortcutKey } from '../shared/types';
-import { GLOBAL_SHORTCUT_LABEL_KEYS } from '../shared/shortcuts';
+import { formatShortcut } from '../shared/shortcuts';
 import type { WindowManager } from './windows/window-manager';
 
 // 16x16 黄色方块 PNG 的兜底图标（resources/icon.png 缺失时保证托盘不崩）
@@ -47,13 +46,11 @@ function loadTrayIcon(): Electron.NativeImage {
 export function refreshTrayMenu(): void {
   if (!trayRef || !windowManagerRef) return;
   const windowManager = windowManagerRef;
-  // 速记项跟随高级设置显示当前键位；off 或非法值（settings.json 手改）只显示名称
-  const qcKey = getAdvanced().quickCaptureShortcut;
-  const qcLabelKey = GLOBAL_SHORTCUT_LABEL_KEYS[qcKey as Exclude<GlobalShortcutKey, 'off'>];
-  const quickLabel =
-    qcKey !== 'off' && qcLabelKey
-      ? tMain('tray.quickWithKey', { key: tMain(qcLabelKey) })
-      : tMain('tray.quick');
+  // 速记项跟随设置显示当前键位；off 或非法值只显示名称
+  const qcLabel = formatShortcut(getAdvanced().quickCaptureShortcut, process.platform);
+  const quickLabel = qcLabel
+    ? tMain('tray.quickWithKey', { key: qcLabel })
+    : tMain('tray.quick');
   const contextMenu = Menu.buildFromTemplate([
     {
       label: tMain('header.create'),
@@ -79,7 +76,7 @@ export function createTray(windowManager: WindowManager): Tray {
   trayRef = new Tray(loadTrayIcon());
   windowManagerRef = windowManager;
   refreshTrayMenu();
-  trayRef.setToolTip('PinSlip');
+  trayRef.setToolTip('xnote');
   trayRef.on('click', () => windowManager.toggleMainWindow());
   return trayRef;
 }

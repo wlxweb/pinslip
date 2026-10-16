@@ -2,7 +2,7 @@
   "setup": {
     "text": "ノートの保存先フォルダを選んでください。すべてのノートは Markdown ファイルとしてここに保存され、他のツールでも開けます。",
     "button": "フォルダを選択",
-    "hint": "おすすめ：ドキュメント\\PinSlip（あとで変更できます）"
+    "hint": "おすすめ：ドキュメント\\xnote（あとで変更できます）"
   },
   "header": {
     "create": "新規ノート",
@@ -170,7 +170,7 @@
     "close": "設定を閉じる",
     "general": "一般",
     "autoStart": "自動起動",
-    "autoStartTip": "ログイン時に PinSlip を自動起動",
+    "autoStartTip": "ログイン時に xnote を自動起動",
     "autoStartPackagedOnly": "インストール版で利用可能",
     "autoStartDevHint": "開発モードでは変更できません。インストール版で有効です",
     "language": "言語",
@@ -208,7 +208,7 @@
     "advancedExpand": "詳細カスタマイズを展開",
     "advancedCollapse": "詳細カスタマイズを折りたたむ",
     "trayIcon": "トレイアイコン",
-    "trayIconTip": "システムトレイに PinSlip アイコンを表示",
+    "trayIconTip": "システムトレイに xnote アイコンを表示",
     "trayIconHint": "トレイをオフにすると、すべてのウィンドウを閉じた時点でアプリを終了します",
     "taskbarIcon": "タスクバーアイコン",
     "taskbarIconTip": "タスクバーにウィンドウアイコンを表示",
@@ -223,12 +223,15 @@
     "managerThemeSystem": "システムに従う",
     "managerThemeHint": "メインウィンドウと設定ドロワーにのみ適用されます。付箋ウィンドウと付箋の色には影響しません",
     "blankNoteShortcut": "空白ノートのショートカット",
-    "blankNoteShortcutHint": "押すとルートフォルダに空白ノートを作成してフォーカスします。配置は「新規ノートの配置」に従います",
+    "blankNoteShortcutHint": "キーをクリックしてから組み合わせを押します。ルートフォルダに空白ノートを作成してフォーカスします。配置は「新規ノートの配置」に従います",
     "blankNoteShortcutRegisterFailed": "ショートカットの登録に失敗しました。他のアプリまたはもう一方のショートカットが使用している可能性があります。元の設定に戻しました",
     "quickCaptureShortcut": "クイックメモのショートカット",
-    "quickCaptureShortcutHint": "押すとクイックメモを起動します。他のアプリと競合する場合（エクスプローラーの新規フォルダーなど）は別のキーに変更するかオフにできます",
+    "quickCaptureShortcutHint": "キーをクリックしてから、⌘・Ctrl・Alt のいずれかを含む組み合わせを押します。他のアプリと競合したら変更するかオフにします。Esc でキャンセル、Delete 単独でオフ",
     "quickCaptureShortcutRegisterFailed": "ショートカットの登録に失敗しました。他のアプリまたはもう一方のショートカットが使用している可能性があります。元の設定に戻しました",
     "shortcutOff": "オフ",
+    "shortcutUnset": "未設定",
+    "shortcutRecording": "ショートカットを押してください…",
+    "shortcutClear": "このショートカットをオフ",
     "shortcutCtrlShiftN": "Ctrl+Shift+N",
     "shortcutCtrlAltQ": "Ctrl+Alt+Q",
     "shortcutCtrlShiftQ": "Ctrl+Shift+Q",
@@ -254,6 +257,7 @@
     "hintLatest": "最新バージョンです",
     "hintError": "確認に失敗しました：{{message}}。手動でインストーラーをダウンロードできます",
     "devUnsupported": "開発モードではアップデート確認を利用できません",
+    "localOnly": "これはローカルインストールの xnote で、ネットからは更新しません",
     "genericError": "アップデートエラー"
   },
   "sync": {
@@ -336,13 +340,13 @@
     "quick": "クイックメモ",
     "quickWithKey": "クイックメモ（{{key}}）",
     "openMain": "メイン画面を開く",
-    "quit": "PinSlip を終了"
+    "quit": "xnote を終了"
   },
   "serverError": {
     "SYNC_URL_REQUIRED": "同期を有効にするにはリポジトリ URL が必要です",
-    "SYNC_LOCAL_NOT_PINSLIP_REPO": "このフォルダーはすでに git リポジトリですが PinSlip 同期リポジトリではありません。.git を手動で処理してから同期を設定してください",
+    "SYNC_LOCAL_NOT_PINSLIP_REPO": "このフォルダーはすでに git リポジトリですが xnote 同期リポジトリではありません。.git を手動で処理してから同期を設定してください",
     "SYNC_LOCAL_PERMISSION": "同期フォルダーの読み書き権限がありません。フォルダーの権限を確認するか、適切な権限で実行してください",
-    "SYNC_REMOTE_NOT_PINSLIP_REPO": "リモートリポジトリは PinSlip の同期リポジトリではありません（.pinslip-repo マーカーがありません）。このリポジトリを使い続ける場合は、そのリポジトリを所有するマシンで .pinslip-repo マーカーファイルをコミットしてプッシュしてから再試行してください。それ以外の場合は空のリポジトリを使用してください",
+    "SYNC_REMOTE_NOT_PINSLIP_REPO": "リモートリポジトリは xnote の同期リポジトリではありません（.pinslip-repo マーカーがありません）。このリポジトリを使い続ける場合は、そのリポジトリを所有するマシンで .pinslip-repo マーカーファイルをコミットしてプッシュしてから再試行してください。それ以外の場合は空のリポジトリを使用してください",
     "SYNC_REMOTE_ACCESS": "リモートリポジトリにアクセスできません。URL・ユーザー名・トークンを確認してください",
     "SYNC_BRANCH_NOT_FOUND": "リモートにそのブランチがありません。ブランチ名を確認するか、空のリポジトリを使用してください",
     "SYNC_UNRELATED_HISTORIES": "ローカルとリモートに共通の祖先がなく、自動マージできません",

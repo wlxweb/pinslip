@@ -2055,6 +2055,39 @@ input.sticky-note__title-input {
   cursor: not-allowed;
 }
 
+/* 全局快捷键录制：点按键后按下组合；关闭按钮只在已设置时出现 */
+.shortcut-recorder {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 70%;
+}
+
+.shortcut-recorder__key,
+.shortcut-recorder__clear {
+  padding: 3px 8px;
+  border: 1px solid var(--mv-border);
+  border-radius: 6px;
+  background: var(--mv-control-bg);
+  font-size: 12px;
+  color: var(--mv-text);
+  cursor: pointer;
+}
+
+.shortcut-recorder__key {
+  min-width: 7em;
+  font-variant-numeric: tabular-nums;
+}
+
+.shortcut-recorder__key.is-recording {
+  border-color: #e0b93f;
+}
+
+.shortcut-recorder__clear {
+  color: var(--mv-muted);
+}
+
 /* git 同步配置表单：标签列 + 文本输入（输入框风格同 settings-panel__select） */
 .settings-panel__field {
   display: flex;
